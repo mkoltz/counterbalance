@@ -145,4 +145,84 @@
     End Sub
 
 
+    Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click, ExportToolStripMenuItem.Click, CloseToolStripMenuItem.Click
+
+        If sender Is ImportToolStripMenuItem Then
+
+            expFileBrowser.ShowDialog()
+
+            clearExperiment()
+
+            Using myReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(expFileBrowser.FileName)
+
+                myReader.TextFieldType = FileIO.FieldType.Delimited
+                myReader.SetDelimiters(",")
+
+                Dim currentRow As String()
+                Dim index, elementNumber As Integer
+                index = 0
+                elementNumber = 0
+
+                While Not myReader.EndOfData
+
+                    'read the current row into a string array 
+                    currentRow = myReader.ReadFields
+                    Dim first As Boolean = True
+
+                    For Each element In currentRow
+                        If first Then
+                            ListBox1.Items.Add(element)
+                            Dim temporaryFactor As New Factor({}, 1, element)
+                            factorList.Add(temporaryFactor)
+                            first = False
+                        Else
+                            currentFactor = factorList.Item(index)
+                            currentFactor.addLevel(element)
+                        End If
+                    Next
+
+                    index = index + 1
+                End While
+
+            End Using
+            ListBox1.SelectedIndex = 0
+        End If
+
+        If sender Is ExportToolStripMenuItem Then
+
+            saveEXPfile.ShowDialog()
+
+            Using writer As New System.IO.StreamWriter(saveEXPfile.FileName)
+
+                For Each f As Factor In factorList
+
+                    writer.Write(f.factorName & ",")
+
+                    For level As Byte = 0 To f.getNumLevels - 1
+                        If level <> f.getNumLevels - 1 Then
+                            writer.Write(f.getLevel(level) & ",")
+                        Else
+                            writer.Write(f.getLevel(level))
+                        End If
+
+                    Next
+
+                    writer.WriteLine()
+                Next
+
+            End Using
+        End If
+
+        If sender Is CloseToolStripMenuItem Then
+            End
+        End If
+    End Sub
+
+    Public Sub clearExperiment()
+        ListBox1.Items.Clear()
+        ListBox2.Items.Clear()
+
+        factorList.Clear()
+    End Sub
+
 End Class

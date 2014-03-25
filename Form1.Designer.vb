@@ -39,7 +39,9 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.numBlocks = New System.Windows.Forms.NumericUpDown()
         Me.NumSubjects = New System.Windows.Forms.NumericUpDown()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -48,13 +50,20 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.numConditions = New System.Windows.Forms.Label()
         Me.numTrialsLabel = New System.Windows.Forms.Label()
-        Me.numBlocks = New System.Windows.Forms.NumericUpDown()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.expFileBrowser = New System.Windows.Forms.OpenFileDialog()
+        Me.saveEXPfile = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumSubjects, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repeatSelector, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
@@ -221,6 +230,14 @@ Partial Class Form1
         Me.TextBox1.Size = New System.Drawing.Size(306, 20)
         Me.TextBox1.TabIndex = 1
         '
+        'numBlocks
+        '
+        Me.numBlocks.Location = New System.Drawing.Point(175, 42)
+        Me.numBlocks.Name = "numBlocks"
+        Me.numBlocks.Size = New System.Drawing.Size(53, 20)
+        Me.numBlocks.TabIndex = 11
+        Me.numBlocks.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
         'NumSubjects
         '
         Me.NumSubjects.Location = New System.Drawing.Point(28, 42)
@@ -228,6 +245,15 @@ Partial Class Form1
         Me.NumSubjects.Size = New System.Drawing.Size(53, 20)
         Me.NumSubjects.TabIndex = 11
         Me.NumSubjects.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(140, 26)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(136, 13)
+        Me.Label9.TabIndex = 10
+        Me.Label9.Text = "Number of Blocks / subject"
         '
         'Label8
         '
@@ -291,22 +317,50 @@ Partial Class Form1
         Me.numTrialsLabel.TabIndex = 13
         Me.numTrialsLabel.Text = "0"
         '
-        'numBlocks
+        'MenuStrip1
         '
-        Me.numBlocks.Location = New System.Drawing.Point(175, 42)
-        Me.numBlocks.Name = "numBlocks"
-        Me.numBlocks.Size = New System.Drawing.Size(53, 20)
-        Me.numBlocks.TabIndex = 11
-        Me.numBlocks.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(458, 24)
+        Me.MenuStrip1.TabIndex = 14
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'Label9
+        'FileToolStripMenuItem
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(140, 26)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(136, 13)
-        Me.Label9.TabIndex = 10
-        Me.Label9.Text = "Number of Blocks / subject"
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloseToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(103, 22)
+        Me.CloseToolStripMenuItem.Text = "Close"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'ImportToolStripMenuItem
+        '
+        Me.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem"
+        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.ImportToolStripMenuItem.Text = "Import..."
+        '
+        'ExportToolStripMenuItem
+        '
+        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
+        Me.ExportToolStripMenuItem.Text = "Export..."
+        '
+        'expFileBrowser
+        '
+        Me.expFileBrowser.FileName = "OpenFileDialog1"
         '
         'Form1
         '
@@ -321,15 +375,19 @@ Partial Class Form1
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "Experiment"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumSubjects, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repeatSelector, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -362,5 +420,13 @@ Partial Class Form1
     Friend WithEvents numTrialsLabel As System.Windows.Forms.Label
     Friend WithEvents numBlocks As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents expFileBrowser As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents saveEXPfile As System.Windows.Forms.SaveFileDialog
 
 End Class
