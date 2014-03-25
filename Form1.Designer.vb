@@ -58,6 +58,7 @@ Partial Class Form1
         Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.expFileBrowser = New System.Windows.Forms.OpenFileDialog()
         Me.saveEXPfile = New System.Windows.Forms.SaveFileDialog()
+        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -341,7 +342,7 @@ Partial Class Form1
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportToolStripMenuItem, Me.ExportToolStripMenuItem, Me.ClearToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "Edit"
@@ -358,9 +359,11 @@ Partial Class Form1
         Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.ExportToolStripMenuItem.Text = "Export..."
         '
-        'expFileBrowser
+        'ClearToolStripMenuItem
         '
-        Me.expFileBrowser.FileName = "OpenFileDialog1"
+        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ClearToolStripMenuItem.Text = "Clear"
         '
         'Form1
         '
@@ -428,5 +431,6 @@ Partial Class Form1
     Friend WithEvents ExportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents expFileBrowser As System.Windows.Forms.OpenFileDialog
     Friend WithEvents saveEXPfile As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents ClearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

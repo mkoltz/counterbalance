@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Counterbalance.exe" size="37376">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Counterbalance.exe" size="43008">
       <assemblyIdentity name="Counterbalance" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>E3R+j+PjbnqffWEFRrI9DurKUcM=</dsig:DigestValue>
+        <dsig:DigestValue>tA7chX8H5wsYrfqAkqe/J3q2h1k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -117,20 +117,24 @@
     End Sub
 
     Public Sub countConditions()
-        conditionCounter = 1
 
-        For f As Byte = 0 To factorList.Count - 1
-            Dim tempFactor As Factor = factorList.Item(f)
+        If factorList.Count <> 0 Then
+            conditionCounter = 1
 
-            conditionCounter = conditionCounter * tempFactor.getNumLevels
+            For f As Byte = 0 To factorList.Count - 1
+                Dim tempFactor As Factor = factorList.Item(f)
 
-        Next
+                conditionCounter = conditionCounter * tempFactor.getNumLevels
 
-        numConditions.Text = conditionCounter
+            Next
 
-        numTrials = conditionCounter * repeatSelector.Value
+            numConditions.Text = conditionCounter
 
-        numTrialsLabel.Text = numTrials
+            numTrials = conditionCounter * repeatSelector.Value
+
+            numTrialsLabel.Text = numTrials
+        End If
+        
 
     End Sub
 
@@ -148,69 +152,75 @@
     Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click, ExportToolStripMenuItem.Click, CloseToolStripMenuItem.Click
 
         If sender Is ImportToolStripMenuItem Then
-
+            clearExperiment()
             expFileBrowser.ShowDialog()
 
-            clearExperiment()
+            If expFileBrowser.FileName <> Nothing Then
+                Using myReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(expFileBrowser.FileName)
 
-            Using myReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(expFileBrowser.FileName)
+                    myReader.TextFieldType = FileIO.FieldType.Delimited
+                    myReader.SetDelimiters(",")
 
-                myReader.TextFieldType = FileIO.FieldType.Delimited
-                myReader.SetDelimiters(",")
+                    Dim currentRow As String()
+                    Dim index, elementNumber As Integer
+                    index = 0
+                    elementNumber = 0
 
-                Dim currentRow As String()
-                Dim index, elementNumber As Integer
-                index = 0
-                elementNumber = 0
+                    While Not myReader.EndOfData
 
-                While Not myReader.EndOfData
+                        currentRow = myReader.ReadFields
+                        Dim first As Boolean = True
 
-                    'read the current row into a string array 
-                    currentRow = myReader.ReadFields
-                    Dim first As Boolean = True
+                        For Each element In currentRow
+                            If first Then
+                                ListBox1.Items.Add(element)
+                                Dim temporaryFactor As New Factor({}, 1, element)
+                                factorList.Add(temporaryFactor)
+                                first = False
+                            Else
+                                currentFactor = factorList.Item(index)
+                                currentFactor.addLevel(element)
+                            End If
+                        Next
 
-                    For Each element In currentRow
-                        If first Then
-                            ListBox1.Items.Add(element)
-                            Dim temporaryFactor As New Factor({}, 1, element)
-                            factorList.Add(temporaryFactor)
-                            first = False
-                        Else
-                            currentFactor = factorList.Item(index)
-                            currentFactor.addLevel(element)
-                        End If
-                    Next
+                        index = index + 1
+                    End While
 
-                    index = index + 1
-                End While
+                End Using
+                ListBox1.SelectedIndex = 0
+            End If
 
-            End Using
-            ListBox1.SelectedIndex = 0
+
+
+            
         End If
 
         If sender Is ExportToolStripMenuItem Then
 
             saveEXPfile.ShowDialog()
 
-            Using writer As New System.IO.StreamWriter(saveEXPfile.FileName)
+            If saveEXPfile.FileName <> Nothing Then
+                Using writer As New System.IO.StreamWriter(saveEXPfile.FileName)
 
-                For Each f As Factor In factorList
+                    For Each f As Factor In factorList
 
-                    writer.Write(f.factorName & ",")
+                        writer.Write(f.factorName & ",")
 
-                    For level As Byte = 0 To f.getNumLevels - 1
-                        If level <> f.getNumLevels - 1 Then
-                            writer.Write(f.getLevel(level) & ",")
-                        Else
-                            writer.Write(f.getLevel(level))
-                        End If
+                        For level As Byte = 0 To f.getNumLevels - 1
+                            If level <> f.getNumLevels - 1 Then
+                                writer.Write(f.getLevel(level) & ",")
+                            Else
+                                writer.Write(f.getLevel(level))
+                            End If
 
+                        Next
+
+                        writer.WriteLine()
                     Next
 
-                    writer.WriteLine()
-                Next
-
-            End Using
+                End Using
+            End If
+            
         End If
 
         If sender Is CloseToolStripMenuItem Then
@@ -225,4 +235,12 @@
         factorList.Clear()
     End Sub
 
+    Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        expFileBrowser.Filter = "CSV | *.csv"
+        saveEXPfile.Filter = "CSV | *.csv"
+    End Sub
+
+    Private Sub ClearToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ClearToolStripMenuItem.Click
+        clearExperiment()
+    End Sub
 End Class
