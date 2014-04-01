@@ -52,8 +52,8 @@
 
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        factorList.RemoveAt(ListBox1.SelectedIndex)
         ListBox1.Items.Remove(ListBox1.SelectedItem)
-        factorList.RemoveAt(ListBox1.SelectedItem)
         countConditions()
     End Sub
 
@@ -243,4 +243,41 @@
     Private Sub ClearToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ClearToolStripMenuItem.Click
         clearExperiment()
     End Sub
+
+    Private Sub upButton_Click(sender As System.Object, e As System.EventArgs) Handles upButton.Click
+
+        Dim i As Integer = ListBox1.SelectedIndex
+
+        If i > 0 Then
+
+            Dim tempListboxItem = ListBox1.Items(i - 1)
+            Dim tempFactor = factorList.Item(i - 1)
+
+            ListBox1.Items.Insert(i + 1, tempListboxItem)
+            factorList.Insert(i + 1, tempFactor)
+            ListBox1.Items.RemoveAt(i - 1)
+            factorList.RemoveAt(i - 1)
+
+        End If
+
+    End Sub
+
+    Private Sub downButton_Click(sender As System.Object, e As System.EventArgs) Handles downButton.Click
+
+        Dim i As Integer = ListBox1.SelectedIndex
+
+        If i < ListBox1.Items.Count - 1 Then
+
+            Dim tempListboxItem = ListBox1.Items(i + 1)
+            Dim tempFactor = factorList.Item(i + 1)
+
+            ListBox1.Items.Insert(i, tempListboxItem)
+            factorList.Insert(i, tempFactor)
+            ListBox1.Items.RemoveAt(i + 2)
+            factorList.RemoveAt(i + 2)
+
+        End If
+
+    End Sub
+
 End Class
