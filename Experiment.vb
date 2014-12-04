@@ -139,6 +139,7 @@
         Next
 
         writer.WriteLine()
+        writer.WriteLine("*")
 
         For i As Integer = 0 To UBound(randomArray, 1)
 
@@ -155,7 +156,7 @@
             writer.WriteLine()
 
         Next
-
+        writer.WriteLine("*")
         writer.Close()
     End Sub
 End Class

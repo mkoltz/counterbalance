@@ -159,7 +159,7 @@
                 Using myReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(expFileBrowser.FileName)
 
                     myReader.TextFieldType = FileIO.FieldType.Delimited
-                    myReader.SetDelimiters(",")
+                    myReader.SetDelimiters(vbTab)
 
                     Dim currentRow As String()
                     Dim index, elementNumber As Integer
@@ -172,14 +172,16 @@
                         Dim first As Boolean = True
 
                         For Each element In currentRow
-                            If first Then
-                                ListBox1.Items.Add(element)
-                                Dim temporaryFactor As New Factor({}, 1, element)
-                                factorList.Add(temporaryFactor)
-                                first = False
-                            Else
-                                currentFactor = factorList.Item(index)
-                                currentFactor.addLevel(element)
+                            If element <> "" Then
+                                If first Then
+                                    ListBox1.Items.Add(" " & element)
+                                    Dim temporaryFactor As New Factor({}, 1, " " & element)
+                                    factorList.Add(temporaryFactor)
+                                    first = False
+                                Else
+                                    currentFactor = factorList.Item(index)
+                                    currentFactor.addLevel(" " & element)
+                                End If
                             End If
                         Next
 
@@ -204,11 +206,11 @@
 
                     For Each f As Factor In factorList
 
-                        writer.Write(f.factorName & ",")
+                        writer.Write(f.factorName & vbTab)
 
                         For level As Byte = 0 To f.getNumLevels - 1
                             If level <> f.getNumLevels - 1 Then
-                                writer.Write(f.getLevel(level) & ",")
+                                writer.Write(f.getLevel(level) & vbTab)
                             Else
                                 writer.Write(f.getLevel(level))
                             End If
@@ -236,8 +238,8 @@
     End Sub
 
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        expFileBrowser.Filter = "CSV | *.csv"
-        saveEXPfile.Filter = "CSV | *.csv"
+        expFileBrowser.Filter = "txt | *.txt"
+        saveEXPfile.Filter = "txt | *.txt"
     End Sub
 
     Private Sub ClearToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ClearToolStripMenuItem.Click

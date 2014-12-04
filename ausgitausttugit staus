@@ -1,0 +1,23 @@
+[33mcommit 31fe2037d5e4a6dad7389148c157d24a0445672e[m
+Author: Martin Koltz <mkoltz2@gmail.com>
+Date:   Mon Mar 31 21:52:44 2014 -0700
+
+    Added up and down arrow to re-order factors.  Fixed the remove factor button.
+
+[33mcommit b1518d066e00a3559e1da61a70f081f5e40385c3[m
+Author: Martin Koltz <mkoltz2@gmail.com>
+Date:   Mon Mar 24 21:57:26 2014 -0700
+
+    Import Export and Clear work as expected
+
+[33mcommit 9a5a63cce0ae3ad50cd4d4e0dc8c148f8a99735e[m
+Author: Martin Koltz <mkoltz2@gmail.com>
+Date:   Mon Mar 24 20:46:53 2014 -0700
+
+    Added the tool bar with basic import export functions.
+
+[33mcommit ee51ae1120e1c81b5cc0441e33ae83be5a00a316[m
+Author: Martin Koltz <mkoltz2@gmail.com>
+Date:   Thu Mar 20 16:58:27 2014 -0700
+
+    Initial commit
