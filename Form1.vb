@@ -16,17 +16,25 @@
 
             exp.defineFactor(f)
 
+            If f.getIncrement Then
+                exp.incrementArray(exp.incrementArray.Length - 1) = 1
+            Else
+                exp.incrementArray(exp.incrementArray.Length - 1) = 0
+            End If
+            ReDim Preserve exp.incrementArray(exp.incrementArray.Length)
         Next
+
+        ReDim Preserve exp.incrementArray(exp.incrementArray.Length - 2)
 
         exp.setRepeats(repeatSelector.Value)
 
 
         For subject As Byte = 101 To NumSubjects.Value + 100
 
-            My.Computer.FileSystem.CreateDirectory(saveDirectory & "\" & "S" & subject)
+            '   My.Computer.FileSystem.CreateDirectory(saveDirectory & "\" & "S" & subject)
             For block As Byte = 1 To numBlocks.Value
 
-                Dim writer As New System.IO.StreamWriter(saveDirectory & "\" & "S" & subject & "\" & "S" & subject & "_Block" & block & ".txt")
+                Dim writer As New System.IO.StreamWriter(saveDirectory & "\" & "S" & subject & "_Track" & block & ".txt")
 
                 exp.writeRandomizedConditions(writer)
             Next
@@ -63,6 +71,7 @@
         ListBox2.Items.Clear()
         Try
             currentFactor = factorList.Item(ListBox1.SelectedIndex)
+            CheckBox1_increment.Checked = currentFactor.getIncrement
 
             Dim levels As Byte = currentFactor.getNumLevels
 
@@ -282,4 +291,7 @@
 
     End Sub
 
+    Private Sub CheckBox1_increment_Click(sender As Object, e As EventArgs) Handles CheckBox1_increment.Click
+        currentFactor.setIncrement(CheckBox1_increment.CheckState)
+    End Sub
 End Class

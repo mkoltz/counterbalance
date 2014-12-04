@@ -3,7 +3,7 @@
     ' Dim lvls() As Double
     Dim type As Byte
     Dim myName As String
-
+    Dim increment As Boolean = False
     Dim factorlist As New ArrayList()
 
     Public Sub New(ByRef levels() As Object, ByVal type As Byte, ByVal name As String)
@@ -16,6 +16,15 @@
         Me.type = type
 
     End Sub
+
+    Public Sub setIncrement(ByVal incr As Boolean)
+        Me.increment = incr
+    End Sub
+
+    Public Function getIncrement()
+        Return Me.increment
+    End Function
+
 
     Public Function getNumLevels()
         Return factorlist.Count
