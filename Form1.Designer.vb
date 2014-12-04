@@ -33,6 +33,8 @@ Partial Class Form1
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.downButton = New System.Windows.Forms.Button()
+        Me.upButton = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -60,8 +62,7 @@ Partial Class Form1
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.expFileBrowser = New System.Windows.Forms.OpenFileDialog()
         Me.saveEXPfile = New System.Windows.Forms.SaveFileDialog()
-        Me.upButton = New System.Windows.Forms.Button()
-        Me.downButton = New System.Windows.Forms.Button()
+        Me.CheckBox1_increment = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +150,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CheckBox1_increment)
         Me.GroupBox1.Controls.Add(Me.downButton)
         Me.GroupBox1.Controls.Add(Me.upButton)
         Me.GroupBox1.Controls.Add(Me.Button3)
@@ -168,6 +170,24 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Define Factors"
+        '
+        'downButton
+        '
+        Me.downButton.Image = CType(resources.GetObject("downButton.Image"), System.Drawing.Image)
+        Me.downButton.Location = New System.Drawing.Point(179, 190)
+        Me.downButton.Name = "downButton"
+        Me.downButton.Size = New System.Drawing.Size(25, 34)
+        Me.downButton.TabIndex = 8
+        Me.downButton.UseVisualStyleBackColor = True
+        '
+        'upButton
+        '
+        Me.upButton.Image = CType(resources.GetObject("upButton.Image"), System.Drawing.Image)
+        Me.upButton.Location = New System.Drawing.Point(179, 141)
+        Me.upButton.Name = "upButton"
+        Me.upButton.Size = New System.Drawing.Size(25, 36)
+        Me.upButton.TabIndex = 8
+        Me.upButton.UseVisualStyleBackColor = True
         '
         'Button3
         '
@@ -370,23 +390,15 @@ Partial Class Form1
         Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.ClearToolStripMenuItem.Text = "Clear"
         '
-        'upButton
+        'CheckBox1_increment
         '
-        Me.upButton.Image = CType(resources.GetObject("upButton.Image"), System.Drawing.Image)
-        Me.upButton.Location = New System.Drawing.Point(179, 141)
-        Me.upButton.Name = "upButton"
-        Me.upButton.Size = New System.Drawing.Size(25, 36)
-        Me.upButton.TabIndex = 8
-        Me.upButton.UseVisualStyleBackColor = True
-        '
-        'downButton
-        '
-        Me.downButton.Image = CType(resources.GetObject("downButton.Image"), System.Drawing.Image)
-        Me.downButton.Location = New System.Drawing.Point(179, 190)
-        Me.downButton.Name = "downButton"
-        Me.downButton.Size = New System.Drawing.Size(25, 34)
-        Me.downButton.TabIndex = 8
-        Me.downButton.UseVisualStyleBackColor = True
+        Me.CheckBox1_increment.AutoSize = True
+        Me.CheckBox1_increment.Location = New System.Drawing.Point(231, 284)
+        Me.CheckBox1_increment.Name = "CheckBox1_increment"
+        Me.CheckBox1_increment.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox1_increment.TabIndex = 9
+        Me.CheckBox1_increment.Text = "increment"
+        Me.CheckBox1_increment.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -457,5 +469,6 @@ Partial Class Form1
     Friend WithEvents ClearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents downButton As System.Windows.Forms.Button
     Friend WithEvents upButton As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1_increment As System.Windows.Forms.CheckBox
 
 End Class

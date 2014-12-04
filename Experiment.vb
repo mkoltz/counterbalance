@@ -1,4 +1,6 @@
-﻿Public Class Experiment
+﻿
+
+Public Class Experiment
 
     Dim experimentalFactors() As Factor
     Dim numSubjects As Byte
@@ -8,7 +10,7 @@
     Dim conditionsArray(,)
     Dim conditionCounter() As Byte
     Dim numFactors As Byte = 0
-
+    Public incrementArray(0) As Byte
 
     '1 = within, 2 = between, 3 = mixed
     Dim design As Byte
@@ -55,7 +57,7 @@
         buildConditionsArray()
     End Sub
 
-   
+
 
     Public Sub buildRandomArray()
         Dim numConditions As Integer = getNumConditions()
@@ -127,6 +129,12 @@
 
         buildRandomArray()
 
+        For i = 0 To incrementArray.Length - 1
+            If incrementArray(i) > 0 Then
+                incrementArray(1) = 1
+            End If
+        Next
+
         writer.Write("#")
 
         For f As Byte = 0 To numFactors - 1
@@ -146,9 +154,20 @@
             For c As Integer = 0 To UBound(randomArray, 2)
 
                 If c = 0 Then
-                    writer.Write(randomArray(i, c))
+                    If incrementArray(c) > 0 Then
+                        writer.Write(incrementArray(c))
+                        incrementArray(c) = incrementArray(c) + 1
+                    Else
+                        writer.Write(randomArray(i, c))
+                    End If
                 Else
-                    writer.Write("," & randomArray(i, c))
+                    If incrementArray(c) > 0 Then
+                        writer.Write(", " & incrementArray(c))
+                        incrementArray(c) = incrementArray(c) + 1
+                    Else
+                        writer.Write("," & randomArray(i, c))
+                    End If
+
                 End If
 
             Next
