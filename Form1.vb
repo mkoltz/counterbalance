@@ -34,7 +34,7 @@
             '   My.Computer.FileSystem.CreateDirectory(saveDirectory & "\" & "S" & subject)
             For block As Byte = 1 To numBlocks.Value
 
-                Dim writer As New System.IO.StreamWriter(saveDirectory & "\" & "S" & subject & "_Track" & block & ".txt")
+                Dim writer As New System.IO.StreamWriter(saveDirectory & "\" & "S" & subject & "_Track" & block & "_" & TextBox_suffix.Text & ".txt")
 
                 exp.writeRandomizedConditions(writer)
             Next

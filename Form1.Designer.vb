@@ -33,6 +33,7 @@ Partial Class Form1
         Me.ListBox2 = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CheckBox1_increment = New System.Windows.Forms.CheckBox()
         Me.downButton = New System.Windows.Forms.Button()
         Me.upButton = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -62,7 +63,8 @@ Partial Class Form1
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.expFileBrowser = New System.Windows.Forms.OpenFileDialog()
         Me.saveEXPfile = New System.Windows.Forms.SaveFileDialog()
-        Me.CheckBox1_increment = New System.Windows.Forms.CheckBox()
+        Me.TextBox_suffix = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.numBlocks, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +75,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(163, 123)
+        Me.Button1.Location = New System.Drawing.Point(163, 129)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 0
@@ -171,6 +173,16 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Define Factors"
         '
+        'CheckBox1_increment
+        '
+        Me.CheckBox1_increment.AutoSize = True
+        Me.CheckBox1_increment.Location = New System.Drawing.Point(231, 284)
+        Me.CheckBox1_increment.Name = "CheckBox1_increment"
+        Me.CheckBox1_increment.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox1_increment.TabIndex = 9
+        Me.CheckBox1_increment.Text = "increment"
+        Me.CheckBox1_increment.UseVisualStyleBackColor = True
+        '
         'downButton
         '
         Me.downButton.Image = CType(resources.GetObject("downButton.Image"), System.Drawing.Image)
@@ -216,6 +228,8 @@ Partial Class Form1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label10)
+        Me.GroupBox2.Controls.Add(Me.TextBox_suffix)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Button2)
         Me.GroupBox2.Controls.Add(Me.TextBox1)
@@ -234,7 +248,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(16, 72)
+        Me.Label4.Location = New System.Drawing.Point(16, 78)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(76, 13)
         Me.Label4.TabIndex = 3
@@ -242,7 +256,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(328, 89)
+        Me.Button2.Location = New System.Drawing.Point(328, 95)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(47, 23)
         Me.Button2.TabIndex = 2
@@ -251,7 +265,7 @@ Partial Class Form1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(16, 91)
+        Me.TextBox1.Location = New System.Drawing.Point(16, 97)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(306, 20)
         Me.TextBox1.TabIndex = 1
@@ -390,15 +404,21 @@ Partial Class Form1
         Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.ClearToolStripMenuItem.Text = "Clear"
         '
-        'CheckBox1_increment
+        'TextBox_suffix
         '
-        Me.CheckBox1_increment.AutoSize = True
-        Me.CheckBox1_increment.Location = New System.Drawing.Point(231, 284)
-        Me.CheckBox1_increment.Name = "CheckBox1_increment"
-        Me.CheckBox1_increment.Size = New System.Drawing.Size(72, 17)
-        Me.CheckBox1_increment.TabIndex = 9
-        Me.CheckBox1_increment.Text = "increment"
-        Me.CheckBox1_increment.UseVisualStyleBackColor = True
+        Me.TextBox_suffix.Location = New System.Drawing.Point(286, 41)
+        Me.TextBox_suffix.Name = "TextBox_suffix"
+        Me.TextBox_suffix.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox_suffix.TabIndex = 12
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(308, 25)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(52, 13)
+        Me.Label10.TabIndex = 13
+        Me.Label10.Text = "File Suffix"
         '
         'Form1
         '
@@ -470,5 +490,7 @@ Partial Class Form1
     Friend WithEvents downButton As System.Windows.Forms.Button
     Friend WithEvents upButton As System.Windows.Forms.Button
     Friend WithEvents CheckBox1_increment As System.Windows.Forms.CheckBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents TextBox_suffix As System.Windows.Forms.TextBox
 
 End Class
